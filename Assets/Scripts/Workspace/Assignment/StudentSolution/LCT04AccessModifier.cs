@@ -55,14 +55,17 @@ namespace Assignment.StudentSolution.LCT04
             // 1. กำหนด specie = "Dog"
             // สามารถเข้าถึง specie ได้เนื่องจาก specie เป็น protected
             // ทำให้สามารถเข้าถึงได้จาก class ที่สืบทอด Animal ได้
+            this.name = "";
 
             // 2. กำนด this.name = name ที่รับเป็น parameter จาก constructor
             // สามารถเข้าถึง name ได้เนื่องจาก name เป็น public 
             // ทำให้สามารถเข้าถึงได้จาก class นี้ได้ เนื่องจาก class นี้สืบทอด Animal
+            specie = "Dog";
 
             // ไม่สามารถเข้าถึง health ได้เนื่องจาก health เป็น private
             // ทำให้ใช้งานได้แค่ใน class ที่ประกาศ health ไว้เท่านั้น ซึ่งก็คือ class Animal
             // this.health = 100; ==> COMPILE ERROR
+            health = 0;
         }
     }
 

@@ -6,16 +6,20 @@ using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class Character : MonoBehaviour
+public class Character : Identity
 {
     public int energy;
     public int attackPoint;
     protected bool isFreeze;
-    OOPMapGenerator mapGenerator;
 
     public virtual void Move(Vector2 direction)
     {
+       int toX = (int)(positionX + direction.x);
+       int toY = (int)(positionY + direction.y);
 
+        positionX = toX;
+        positionY = toY;
+        transform.position = new Vector3(positionX, positionY);
     }
 
     public virtual void TakeDamage(int Damage)
@@ -69,30 +73,28 @@ public class Character : MonoBehaviour
     /// <returns></returns>
     public bool HasPlacement(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData != mapGenerator.empty;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData != mapGenerator.empty;
     }
 
     public bool IsDemonWalls(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData == mapGenerator.demonWall;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData == mapGenerator.demonWall;
+
     }
 
     public bool IsPotion(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData == mapGenerator.potion;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData == mapGenerator.potion;
+
     }
 
     public bool IsExit(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData == mapGenerator.exit;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData == mapGenerator.exit;
     }
 
     #endregion
