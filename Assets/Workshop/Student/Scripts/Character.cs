@@ -17,9 +17,23 @@ public class Character : Identity
        int toX = (int)(positionX + direction.x);
        int toY = (int)(positionY + direction.y);
 
-        positionX = toX;
-        positionY = toY;
-        transform.position = new Vector3(positionX, positionY);
+        if (HasPlacement(toX, toY))
+        {
+            if (IsPotion(toX, toY))
+            {
+                mapGenerator.potions[toX, toY].Hit();
+                positionX = toX;
+                positionY = toY;
+                transform.position = new Vector2(positionX, positionY);
+            }
+        }
+        else
+        {
+            positionX = toX;
+            positionY = toY;
+            transform.position = new Vector2(positionX, positionY);
+            TakeDamage(1);
+        }
     }
 
     public virtual void TakeDamage(int Damage)
