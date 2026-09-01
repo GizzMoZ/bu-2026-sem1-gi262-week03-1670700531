@@ -26,9 +26,21 @@ public class Character : Identity
                 positionY = toY;
                 transform.position = new Vector2(positionX, positionY);
             }
+            else if (IsDemonWalls(toX, toY))
+            {
+                mapGenerator.walls[toX, toY].Hit();
+            }
+            else if (IsExit(toX, toY))
+            {
+                mapGenerator.Exit.Hit();
+                positionX = toX;
+                positionY = toY;
+                transform.position = new Vector2(positionX, positionY);
+            }
         }
         else
         {
+            mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
             positionX = toX;
             positionY = toY;
             transform.position = new Vector2(positionX, positionY);
